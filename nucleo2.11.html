@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>¿Cómo pasa una IA de del ruido a una imagen?</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./prueba.css" />
+
+    <link rel="stylesheet" href="nucleo3.4.html" />
+  </head>
+  <body>
+    <h1>Ordená las etapas del proceso de Tomás García</h1>
+    <div class="game-container">
+      <div class="textoIzDer">
+        <h3>Orden del proceso</h3>
+        <h3 class="resaltado1" id="attempts-text">
+          intento <span id="attempts-count">1</span> de 3
+        </h3>
+      </div>
+      <!-- Casillas de destino -->
+      <div class="slots-container">
+        <div class="slot dropzone" data-expected="item-1"></div>
+        <div class="slot dropzone" data-expected="item-2"></div>
+        <div class="slot dropzone" data-expected="item-3"></div>
+        <div class="slot dropzone" data-expected="item-4"></div>
+      </div>
+
+      <h3>etapas</h3>
+
+      <!-- Contenedor inicial de las piezas -->
+      <div class="items-container dropzone" id="start-zone">
+        <div class="draggable" draggable="true" id="item-3">
+          <img src="img/pulirDet.png" alt="Pulir detalles" class="drag-image" />
+        </div>
+        <div class="draggable" draggable="true" id="item-1">
+          <img src="img/experiment.png" alt="Experimentar" class="drag-image" />
+        </div>
+        <div class="draggable" draggable="true" id="item-4">
+          <img src="img/selec.png" alt="Seleccionar" class="drag-image" />
+        </div>
+        <div class="draggable" draggable="true" id="item-2">
+          <img src="img/entren.png" alt="Entrenar" class="drag-image" />
+        </div>
+      </div>
+
+      <p id="message"></p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+  <footer>
+    <a id="verify-btn" class="boton1">
+      comprobar
+      <img src="img/Flecha derecha.png" alt="" />
+    </a>
+  </footer>
+</html>
