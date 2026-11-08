@@ -1151,6 +1151,11 @@ footer {
   display: none;
 }
 
+.slot.filled {
+  border-color: transparent;
+  background-color: transparent;
+}
+
 .slot > .draggable {
   height: 100%;
 }
@@ -1166,6 +1171,15 @@ footer {
   font-weight: bold;
   min-height: 24px;
   margin-top: 15px;
+}
+
+.mensajito {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 @media (max-width: 900px) {

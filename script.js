@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const draggables = document.querySelectorAll(".draggable");
   const dropzones = document.querySelectorAll(".dropzone");
   const message = document.getElementById("message");
+  const resultImage = document.getElementById("resultado-img");
   const verifyBtn = document.getElementById("verify-btn");
   const attemptsCountDisplay = document.getElementById("attempts-count");
 
@@ -93,25 +94,23 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Si todas son correctas (Victoria)
-    if (correctCount === 4) {
+    const isCorrect = correctCount === slots.length;
+    resultImage.src = isCorrect
+      ? "img/correcto_casillero.png"
+      : "img/incorrecto_casillero.png";
+    resultImage.alt = isCorrect ? "Respuesta correcta" : "Respuesta incorrecta";
+    resultImage.hidden = false;
+    if (isCorrect) {
       message.textContent =
-        "¡Excelente! Has colocado todos en el orden correcto.";
-      message.style.color = "#28a745";
+        "¡Perfecto!, ordenaste las etapas en el orden correcto.";
       endGame();
     } else {
-      // Si hay error (Resta intento)
+      message.textContent =
+        "Las etapas no van de esa manera. Intentalo de nuevo.";
       intentos--;
       attemptsCountDisplay.textContent = intentos;
 
-      if (intentos > 0) {
-        message.textContent =
-          "Orden incorrecto. Te quedan " + intentos + " intento(s).";
-        message.style.color = "#dc3545";
-      } else {
-        // Sin intentos (Derrota)
-        message.textContent = "¡Te quedaste sin intentos! Fin del juego.";
-        message.style.color = "#dc3545";
+      if (intentos === 0) {
         endGame();
       }
     }
