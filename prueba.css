@@ -1058,23 +1058,13 @@ footer {
 
 .game-container {
   text-align: center;
-  padding: 30px;
+  padding: 16px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  min-width: 400px;
-
-  border-radius: 8px;
   border: 2px solid #79da5b80;
-  flex-direction: row;
-  margin-left: 100px;
-  padding: 16px;
-
-  justify-content: center;
-
-  width: 90%;
-  max-width: 90%;
-  height: 20%;
-  max-height: 100%;
+  margin-left: 0;
+  width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
 
   background: linear-gradient(to bottom, #170f1f00, #3f772e88);
@@ -1087,12 +1077,13 @@ footer {
 
 .items-container,
 .slots-container {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 15px;
   margin: 20px 0;
   min-height: 80px;
   padding: 15px;
+  box-sizing: border-box;
 }
 
 .items-container {
@@ -1100,15 +1091,16 @@ footer {
 }
 
 .slots-container span {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.6);
   font-size: 80px;
   font-weight: bold;
 }
 
 /* Estilos de los objetos que se arrastran */
 .draggable {
-  width: 396px;
-  height: 238px;
+  width: 100%;
+  aspect-ratio: 396 / 238;
+  height: auto;
   color: white;
   font-size: 24px;
   font-weight: bold;
@@ -1116,6 +1108,7 @@ footer {
   justify-content: center;
   align-items: center;
   border-radius: 8px;
+  box-sizing: border-box;
   cursor: grab;
   user-select: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -1139,8 +1132,9 @@ footer {
 
 /* ESTILOS DE LAS CASILLAS DE DESTINO */
 .slot {
-  width: 396px;
-  height: 238px;
+  width: 100%;
+  aspect-ratio: 396 / 238;
+  min-width: 0;
   border: 3px dashed #6c757d; /* Borde punteado oscuro */
   background-color: #302f2f; /* Fondo claro para que se vean vacías */
   border-radius: 8px;
@@ -1148,6 +1142,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+
   transition:
     background-color 0.3s,
     border-color 0.3s;
@@ -1155,6 +1150,10 @@ footer {
 
 .slot.filled > span {
   display: none;
+}
+
+.slot > .draggable {
+  height: 100%;
 }
 
 .slot.hovered {
@@ -1168,6 +1167,17 @@ footer {
   font-weight: bold;
   min-height: 24px;
   margin-top: 15px;
+}
+
+@media (max-width: 900px) {
+  .pantalla4 {
+    padding: 40px 24px;
+  }
+
+  .items-container,
+  .slots-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /*
