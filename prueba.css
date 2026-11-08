@@ -1136,9 +1136,8 @@ footer {
   aspect-ratio: 396 / 238;
   min-width: 0;
   border: 3px dashed #6c757d; /* Borde punteado oscuro */
-  background-color: #302f2f; /* Fondo claro para que se vean vacías */
+  background-color: rgba(48, 47, 47, 0.5);
   border-radius: 8px;
-  filter: opacity(50%);
   display: flex;
   justify-content: center;
   align-items: center;
