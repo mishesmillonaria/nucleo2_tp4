@@ -14,13 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault(); // Evita arrastrar si el juego terminó
         return;
       }
-      e.dataTransfer.setData("text/plain", e.target.id);
+      e.dataTransfer.setData("text/plain", e.currentTarget.id);
       e.dataTransfer.effectAllowed = "move";
-      setTimeout(() => e.target.classList.add("hide"), 0);
+      setTimeout(() => draggable.classList.add("hide"), 0);
     });
 
     draggable.addEventListener("dragend", (e) => {
-      e.target.classList.remove("hide");
+      e.currentTarget.classList.remove("hide");
       // Ya no llamamos a checkOrder() aquí, ahora lo hace el botón
     });
   });
@@ -52,9 +52,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (
         draggable &&
-        (zone.id === "start-zone" || zone.children.length === 0)
+        (zone.id === "start-zone" || !zone.querySelector(".draggable"))
       ) {
+        const source = draggable.parentElement;
         zone.appendChild(draggable);
+        if (source && source.classList.contains("slot")) {
+          source.classList.remove("filled");
+        }
+        if (zone.classList.contains("slot")) {
+          zone.classList.add("filled");
+        }
       }
     });
   });
@@ -68,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let totalPlaced = 0;
 
     slots.forEach((slot) => {
-      const child = slot.firstElementChild;
+      const child = slot.querySelector(".draggable");
       const expectedId = slot.getAttribute("data-expected");
 
       if (child) {

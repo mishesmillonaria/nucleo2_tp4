@@ -1099,6 +1099,12 @@ footer {
   border-radius: 8px;
 }
 
+.slots-container span {
+  color: #ffffff;
+  font-size: 80px;
+  font-weight: bold;
+}
+
 /* Estilos de los objetos que se arrastran */
 .draggable {
   width: 396px;
@@ -1145,6 +1151,10 @@ footer {
   transition:
     background-color 0.3s,
     border-color 0.3s;
+}
+
+.slot.filled > span {
+  display: none;
 }
 
 .slot.hovered {
