@@ -220,6 +220,7 @@ li {
 }
 
 .opciones img {
+  margin-bottom: auto;
   width: 80px;
   height: 80px;
 }
