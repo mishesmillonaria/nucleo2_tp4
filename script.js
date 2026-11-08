@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultImage = document.getElementById("resultado-img");
   const verifyBtn = document.getElementById("verify-btn");
   const attemptsCountDisplay = document.getElementById("attempts-count");
+  const slots = document.querySelectorAll(".slot");
+  const slotIcons = document.querySelectorAll(".icono_rata");
+  const iconNames = ["uno", "dos", "tres", "cuatro"];
 
   let intentos = 3;
   let gameOver = false;
@@ -55,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         draggable &&
         (zone.id === "start-zone" || !zone.querySelector(".draggable"))
       ) {
+        clearFeedback();
         const source = draggable.parentElement;
         zone.appendChild(draggable);
         if (source && source.classList.contains("slot")) {
@@ -71,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
   verifyBtn.addEventListener("click", () => {
     if (gameOver) return;
 
-    const slots = document.querySelectorAll(".slot");
     let correctCount = 0;
     let totalPlaced = 0;
 
@@ -95,6 +98,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const isCorrect = correctCount === slots.length;
+    slotIcons.forEach((icon, index) => {
+      icon.onerror = () => {
+        icon.onerror = null;
+        if (isCorrect) icon.src = "img/comentario_verde.png";
+        else icon.hidden = true;
+      };
+      icon.src = `img/${iconNames[index]}_${isCorrect ? "verde" : "rojo"}.png`;
+      icon.hidden = false;
+    });
+
     resultImage.src = isCorrect
       ? "img/correcto_casillero.png"
       : "img/incorrecto_casillero.png";
@@ -115,6 +128,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+
+  function clearFeedback() {
+    slotIcons.forEach((icon) => (icon.hidden = true));
+    resultImage.hidden = true;
+    message.textContent = "";
+  }
 
   // Función para bloquear el juego al terminar
   function endGame() {
