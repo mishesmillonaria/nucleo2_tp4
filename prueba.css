@@ -200,8 +200,7 @@ li {
   /* border: 1px solid #f4a794; */
   padding: 0%;
 
-  width: 100%;
-  max-width: 528px;
+  width: 500px;
   box-sizing: border-box;
 
   background-origin: border-box;
