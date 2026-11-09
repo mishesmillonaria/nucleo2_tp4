@@ -1176,6 +1176,10 @@ footer {
   height: 100%;
 }
 
+.slots-container.orden-correcto .slot {
+  aspect-ratio: 396 / 445;
+}
+
 .slot.hovered {
   background-color: #e3f2fd;
   border-color: #007bff;
