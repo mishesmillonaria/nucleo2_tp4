@@ -1076,6 +1076,19 @@ footer {
   -webkit-background-clip: padding-box, border-box;
 }
 
+.textoIzDer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.textoIzDer h3 {
+  margin: 24px;
+}
+
 .items-container,
 .slots-container {
   display: grid;
