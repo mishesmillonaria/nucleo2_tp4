@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const verifyLabel = document.getElementById("verificando_organos");
   const attemptsCountDisplay = document.getElementById("attempts-count");
   const startZone = document.getElementById("start-zone");
+  const camuflaje = document.getElementById("avestruz");
   const slots = document.querySelectorAll(".slot");
   const slotsContainer = document.querySelector(".slots-container");
   const ratitas = document.querySelectorAll(".icono_rata");
@@ -98,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (retryPending) {
       retryPending = false;
       verifyLabel.textContent = "Comprobar";
+      camuflaje.hidden = false;
       draggables.forEach((draggable) => startZone.appendChild(draggable));
       slots.forEach((slot) => slot.classList.remove("filled"));
       clearFeedback();
@@ -128,6 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    camuflaje.hidden = true;
     const isCorrect = correctCount === slots.length;
     draggables.forEach((draggable) => {
       draggable.classList.remove("draggable_correcto", "draggable_incorrecto");
