@@ -11,12 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const slotsContainer = document.querySelector(".slots-container");
   const ratitas = document.querySelectorAll(".icono_rata");
   const jinetes_apocalipsis = ["uno", "dos", "tres", "cuatro"];
-  const imagenesCorrectas = {
-    "item-1": "experimentar_bien.png",
-    "item-2": "entrenar_bien.png",
-    "item-3": "pulir_detalles_bien.png",
-    "item-4": "seleccionar_bien.png",
-  };
+  const imagenesCorrectas = [
+    "experimentar",
+    "entrenar",
+    "pulir_detalles",
+    "seleccionar",
+  ];
 
   let intentos = 3;
   let gameOver = false;
@@ -148,9 +148,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isCorrect) {
       draggables.forEach((draggable) => {
         const image = draggable.querySelector(".drag-image");
-        const correctImage = imagenesCorrectas[draggable.id];
+        const itemNumber = Number(draggable.id.split("-")[1]);
+        const correctImage = imagenesCorrectas[itemNumber - 1];
         if (image && correctImage) {
-          image.src = `img/${correctImage}`;
+          image.src = `img/${correctImage}_bien.png`;
         }
       });
       slotsContainer.classList.add("orden-correcto");
