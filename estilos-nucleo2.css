@@ -172,7 +172,7 @@ li {
 
 .resaltado5 {
   margin-bottom: 0px;
-  color: #79da5b;
+  color: #d2f5c7;
 }
 
 .fuentes {
@@ -1292,6 +1292,14 @@ footer {
 .boton3 img {
   width: 37px;
   height: 30px;
+}
+
+.degradado_boton1 {
+  background: linear-gradient(to bottom, #ffffff, #d2f5c7);
+}
+
+.degradado_boton2 {
+  background: linear-gradient(to bottom, #ffffff, #d7b0e6);
 }
 
 /* ---------- BotÃ³n Confirmar bloqueado ---------- */
