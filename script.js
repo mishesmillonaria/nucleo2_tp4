@@ -4,13 +4,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const message = document.getElementById("message");
   const resultImage = document.getElementById("resultado-img");
   const verifyBtn = document.getElementById("verify-btn");
+  const verifyLabel = document.getElementById("verificando_organos");
   const attemptsCountDisplay = document.getElementById("attempts-count");
+  const startZone = document.getElementById("start-zone");
   const slots = document.querySelectorAll(".slot");
-  const slotIcons = document.querySelectorAll(".icono_rata");
-  const iconNames = ["uno", "dos", "tres", "cuatro"];
+  const ratitas = document.querySelectorAll(".icono_rata");
+  const jinetes_apocalipsis = ["uno", "dos", "tres", "cuatro"];
 
   let intentos = 3;
   let gameOver = false;
+  let retryPending = false;
+
+  function updateVerifyButton() {
+    const allItemsPlaced = [...slots].every((slot) =>
+      slot.querySelector(".draggable"),
+    );
+    verifyBtn.disabled = gameOver || !allItemsPlaced;
+    verifyBtn.classList.toggle("deshabilitado", verifyBtn.disabled);
+  }
 
   draggables.forEach((draggable) => {
     draggable.addEventListener("dragstart", (e) => {
@@ -67,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (zone.classList.contains("slot")) {
           zone.classList.add("filled");
         }
+        updateVerifyButton();
       }
     });
   });
@@ -74,6 +86,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Evento del botón Verificar
   verifyBtn.addEventListener("click", () => {
     if (gameOver) return;
+
+    if (retryPending) {
+      retryPending = false;
+      verifyLabel.textContent = "Comprobar";
+      draggables.forEach((draggable) => startZone.appendChild(draggable));
+      slots.forEach((slot) => slot.classList.remove("filled"));
+      clearFeedback();
+      updateVerifyButton();
+      return;
+    }
 
     let correctCount = 0;
     let totalPlaced = 0;
@@ -98,13 +120,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const isCorrect = correctCount === slots.length;
-    slotIcons.forEach((icon, index) => {
+    ratitas.forEach((icon, index) => {
       icon.onerror = () => {
         icon.onerror = null;
         if (isCorrect) icon.src = "img/comentario_verde.png";
         else icon.hidden = true;
       };
-      icon.src = `img/${iconNames[index]}_${isCorrect ? "verde" : "rojo"}.png`;
+      icon.src = `img/${jinetes_apocalipsis[index]}_${isCorrect ? "verde" : "rojo"}.png`;
       icon.hidden = false;
     });
 
@@ -125,12 +147,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (intentos === 0) {
         endGame();
+      } else {
+        retryPending = true;
+        verifyLabel.textContent = "Intentar de nuevo";
       }
     }
   });
 
   function clearFeedback() {
-    slotIcons.forEach((icon) => (icon.hidden = true));
+    ratitas.forEach((icon) => (icon.hidden = true));
     resultImage.hidden = true;
     message.textContent = "";
   }
@@ -138,8 +163,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Función para bloquear el juego al terminar
   function endGame() {
     gameOver = true;
-    verifyBtn.disabled = true;
+    updateVerifyButton();
     // Opcional: quitar el estilo visual de "cursor: grab"
     draggables.forEach((d) => (d.style.cursor = "default"));
   }
+
+  updateVerifyButton();
 });
