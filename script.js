@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const draggables = document.querySelectorAll(".draggable");
   const dropzones = document.querySelectorAll(".dropzone");
   const message = document.getElementById("message");
+  const tituloProceso = document.getElementById("titulo-proceso");
   const resultImage = document.getElementById("resultado-img");
   const verifyBtn = document.getElementById("verify-btn");
   const verifyLabel = document.getElementById("verificando_organos");
@@ -106,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (retryPending) {
       retryPending = false;
       verifyLabel.textContent = "Comprobar";
+      verifyIcon.src = "img/tilde.png";
       camuflaje.hidden = false;
       draggables.forEach((draggable) => startZone.appendChild(draggable));
       slots.forEach((slot) => slot.classList.remove("filled"));
@@ -156,6 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
     resultImage.alt = isCorrect ? "Respuesta correcta" : "Respuesta incorrecta";
     resultImage.hidden = false;
     if (isCorrect) {
+      tituloProceso.textContent = "Así se arman sus obras";
       draggables.forEach((draggable) => {
         const image = draggable.querySelector(".drag-image");
         const itemNumber = Number(draggable.id.split("-")[1]);
@@ -182,6 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         retryPending = true;
         verifyLabel.textContent = "Intentar de nuevo";
+        verifyIcon.src = "img/Flecha derecha.png";
       }
     }
   });
