@@ -1129,6 +1129,25 @@ footer {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
+.me_harta {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 396 / 238;
+  height: auto;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px solid #6c757d;
+  border-radius: 24px;
+  box-sizing: border-box;
+
+  user-select: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
 .draggable_correcto {
   border-color: #5cd65c;
 }
@@ -1200,7 +1219,6 @@ footer {
 }
 
 #message {
-  font-size: 34px;
   font-weight: bold;
 }
 
@@ -1321,10 +1339,12 @@ footer {
 
 .degradado_boton1 {
   background: linear-gradient(to bottom, #ffffff, #d2f5c7);
+  border: transparent;
 }
 
 .degradado_boton2 {
   background: linear-gradient(to bottom, #ffffff, #d7b0e6);
+  border: transparent;
 }
 
 /* ---------- BotÃ³n Confirmar bloqueado ---------- */

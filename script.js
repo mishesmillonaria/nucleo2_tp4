@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const ratitas = document.querySelectorAll(".icono_rata");
   const jinetes_apocalipsis = ["uno", "dos", "tres", "cuatro"];
   const imagenesCorrectas = [
-    "experimentar",
     "entrenar",
+    "experimentar",
     "pulir_detalles",
     "seleccionar",
   ];
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Evento del botón Verificar
   verifyBtn.addEventListener("click", () => {
     if (nextStep) {
-      window.location.href = "nucleo2.1.html";
+      window.location.href = "nucleo3.4.html";
       return;
     }
 
