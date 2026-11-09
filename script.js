@@ -127,12 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     });
     ratitas.forEach((icon, index) => {
-      icon.onerror = () => {
-        icon.onerror = null;
-        if (isCorrect) icon.src = "img/comentario_verde.png";
-        else icon.hidden = true;
-      };
-      icon.src = `img/${jinetes_apocalipsis[index]}_${isCorrect ? "verde" : "rojo"}.png`;
+      icon.src = `img/${jinetes_apocalipsis[index]}_${isCorrect ? "correcto" : "rojo"}.png`;
       icon.hidden = false;
     });
 
