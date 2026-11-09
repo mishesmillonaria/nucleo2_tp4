@@ -1108,11 +1108,20 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
+  border: 4px solid #6c757d;
+  border-radius: 24px;
   box-sizing: border-box;
   cursor: grab;
   user-select: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.draggable_correcto {
+  border-color: #5cd65c;
+}
+
+.draggable_incorrecto {
+  border-color: #e8643c;
 }
 
 .drag-image {
@@ -1120,7 +1129,6 @@ footer {
   height: 100%;
   object-fit: contain; /* Evita que la imagen se deforme */
   pointer-events: none; /* Muy importante: evita que el navegador intente arrastrar la imagen en vez de la caja contenedora */
-  border-radius: 8px; /* Opcional, por si tienen fondo */
 }
 
 .icono_rata {

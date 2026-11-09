@@ -120,6 +120,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const isCorrect = correctCount === slots.length;
+    draggables.forEach((draggable) => {
+      draggable.classList.remove("draggable_correcto", "draggable_incorrecto");
+      draggable.classList.add(
+        isCorrect ? "draggable_correcto" : "draggable_incorrecto",
+      );
+    });
     ratitas.forEach((icon, index) => {
       icon.onerror = () => {
         icon.onerror = null;
@@ -158,6 +164,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ratitas.forEach((icon) => (icon.hidden = true));
     resultImage.hidden = true;
     message.textContent = "";
+    draggables.forEach((draggable) =>
+      draggable.classList.remove("draggable_correcto", "draggable_incorrecto"),
+    );
   }
 
   // Función para bloquear el juego al terminar
