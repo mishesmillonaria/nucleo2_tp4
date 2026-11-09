@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (zone.classList.contains("slot")) {
           zone.classList.add("filled");
         }
+        updatePlacementIcons();
         updateVerifyButton();
       }
     });
@@ -93,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
       draggables.forEach((draggable) => startZone.appendChild(draggable));
       slots.forEach((slot) => slot.classList.remove("filled"));
       clearFeedback();
+      updatePlacementIcons();
       updateVerifyButton();
       return;
     }
@@ -162,6 +164,19 @@ document.addEventListener("DOMContentLoaded", () => {
     draggables.forEach((draggable) =>
       draggable.classList.remove("draggable_correcto", "draggable_incorrecto"),
     );
+  }
+
+  function updatePlacementIcons() {
+    slots.forEach((slot, index) => {
+      const icon = ratitas[index];
+      if (!icon) return;
+
+      const hasItem = slot.querySelector(".draggable");
+      icon.hidden = !hasItem;
+      if (hasItem) {
+        icon.src = `img/${jinetes_apocalipsis[index]}_verde.png`;
+      }
+    });
   }
 
   // Función para bloquear el juego al terminar
