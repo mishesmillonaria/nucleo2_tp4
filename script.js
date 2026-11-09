@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultImage = document.getElementById("resultado-img");
   const verifyBtn = document.getElementById("verify-btn");
   const verifyLabel = document.getElementById("verificando_organos");
+  const verifyIcon = verifyBtn.querySelector("img");
   const attemptsCountDisplay = document.getElementById("attempts-count");
   const startZone = document.getElementById("start-zone");
   const camuflaje = document.getElementById("avestruz");
@@ -22,12 +23,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let intentos = 3;
   let gameOver = false;
   let retryPending = false;
+  let nextStep = false;
 
   function updateVerifyButton() {
     const allItemsPlaced = [...slots].every((slot) =>
       slot.querySelector(".draggable"),
     );
-    verifyBtn.disabled = gameOver || !allItemsPlaced;
+    verifyBtn.disabled = !nextStep && (gameOver || !allItemsPlaced);
     verifyBtn.classList.toggle("deshabilitado", verifyBtn.disabled);
   }
 
@@ -94,6 +96,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Evento del botón Verificar
   verifyBtn.addEventListener("click", () => {
+    if (nextStep) {
+      window.location.href = "nucleo2.1.html";
+      return;
+    }
+
     if (gameOver) return;
 
     if (retryPending) {
@@ -160,6 +167,9 @@ document.addEventListener("DOMContentLoaded", () => {
       slotsContainer.classList.add("orden-correcto");
       message.textContent =
         "¡Perfecto!, ordenaste las etapas en el orden correcto.";
+      nextStep = true;
+      verifyLabel.textContent = "Siguiente";
+      verifyIcon.src = "img/Flecha derecha.png";
       endGame();
     } else {
       message.textContent =
