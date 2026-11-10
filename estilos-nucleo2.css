@@ -1344,6 +1344,11 @@ footer {
 }
 
 .degradado_boton2 {
+  background: linear-gradient(to bottom, #ffffff, #f4a794);
+  border: transparent;
+}
+
+.degradado_boton3 {
   background: linear-gradient(to bottom, #ffffff, #d7b0e6);
   border: transparent;
 }
