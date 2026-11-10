@@ -21,10 +21,15 @@ document.addEventListener("DOMContentLoaded", () => {
     "seleccionar",
   ];
 
-  let intentos = 3;
+  const attemptsStorageKey = "nucleo3-attempt-count";
+  const maxIntentos = 3;
+  let intentoActual = 1;
   let gameOver = false;
   let retryPending = false;
   let nextStep = false;
+
+  sessionStorage.removeItem(attemptsStorageKey);
+  attemptsCountDisplay.textContent = intentoActual;
 
   function updateVerifyButton() {
     const allItemsPlaced = [...slots].every((slot) =>
@@ -98,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Evento del botón Verificar
   verifyBtn.addEventListener("click", () => {
     if (nextStep) {
-      window.location.href = "nucleo3.4.html";
+      window.location.href = "nucleo3.4-op.html";
       return;
     }
 
@@ -117,30 +122,19 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    let correctCount = 0;
-    let totalPlaced = 0;
-
-    slots.forEach((slot) => {
-      const child = slot.querySelector(".draggable");
-      const expectedId = slot.getAttribute("data-expected");
-
-      if (child) {
-        totalPlaced++;
-        if (child.id === expectedId) {
-          correctCount++;
-        }
-      }
-    });
-
-    // Validar si el usuario no ha puesto todas las piezas
-    if (totalPlaced < 4) {
+    const allItemsPlaced = [...slots].every((slot) =>
+      slot.querySelector(".draggable"),
+    );
+    if (!allItemsPlaced) {
       message.textContent = "¡Coloca todas las piezas antes de verificar!";
       message.style.color = "#ffc107";
       return;
     }
 
     camuflaje.hidden = true;
-    const isCorrect = correctCount === slots.length;
+    const isCorrect = [...slots].every(
+      (slot) => slot.querySelector(".draggable").id === slot.dataset.expected,
+    );
     draggables.forEach((draggable) => {
       draggable.classList.remove("draggable_correcto", "draggable_incorrecto");
       draggable.classList.add(
@@ -177,12 +171,12 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       message.textContent =
         "Las etapas no van de esa manera. Intentalo de nuevo.";
-      intentos--;
-      attemptsCountDisplay.textContent = intentos;
 
-      if (intentos === 0) {
+      if (intentoActual >= maxIntentos) {
         endGame();
       } else {
+        intentoActual++;
+        attemptsCountDisplay.textContent = intentoActual;
         retryPending = true;
         verifyLabel.textContent = "Intentar de nuevo";
         verifyIcon.src = "img/Flecha derecha.png";
@@ -215,6 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Función para bloquear el juego al terminar
   function endGame() {
     gameOver = true;
+    sessionStorage.setItem(attemptsStorageKey, String(intentoActual));
     updateVerifyButton();
     // Opcional: quitar el estilo visual de "cursor: grab"
     draggables.forEach((d) => (d.style.cursor = "default"));
