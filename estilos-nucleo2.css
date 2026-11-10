@@ -171,7 +171,7 @@ li {
 }
 
 .resaltado5 {
-  margin-bottom: 0px;
+  margin: 0px;
   color: #d2f5c7;
 }
 
@@ -229,7 +229,8 @@ li {
 .imgTomasG {
   width: 35%;
   height: 35%;
-  border-radius: 4px;
+  border-radius: 8px;
+  border: 2px solid #79da5b80;
 }
 
 .ejTomasG {
