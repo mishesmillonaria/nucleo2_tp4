@@ -227,8 +227,9 @@ li {
 }
 
 .imgTomasG {
-  width: 45%;
-  height: 45%;
+  width: 200%;
+  height: 200%;
+  margin: auto;
   border-radius: 8px;
   border: 2px solid #79da5b80;
 }
