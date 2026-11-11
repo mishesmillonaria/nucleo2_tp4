@@ -787,6 +787,18 @@ footer {
   margin: 24px;
 }
 
+.textoTildecita {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.textoTildecita img {
+  width: 8px;
+}
+
 .items-container,
 .slots-container {
   display: grid;
