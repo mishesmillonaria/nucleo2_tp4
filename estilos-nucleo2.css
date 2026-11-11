@@ -787,6 +787,10 @@ footer {
   margin: 24px;
 }
 
+.textoIzDer #attempts-text {
+  margin: 24px;
+}
+
 .textoTildecita {
   display: flex;
   align-items: center;
@@ -812,6 +816,10 @@ footer {
 
 .items-container {
   border-radius: 8px;
+}
+
+.items-container[hidden] {
+  display: none;
 }
 
 .slots-container span {

@@ -114,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
       verifyLabel.textContent = "Comprobar";
       verifyIcon.src = "img/tilde.png";
       camuflaje.hidden = false;
+      startZone.hidden = false;
       draggables.forEach((draggable) => startZone.appendChild(draggable));
       slots.forEach((slot) => slot.classList.remove("filled"));
       clearFeedback();
@@ -132,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     camuflaje.hidden = true;
+    startZone.hidden = true;
     const isCorrect = [...slots].every(
       (slot) => slot.querySelector(".draggable").id === slot.dataset.expected,
     );
