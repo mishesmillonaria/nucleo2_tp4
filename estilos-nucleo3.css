@@ -415,7 +415,7 @@ li {
 }
 /*
 ========================================
-            PANTALLA 2 MANO
+            PANTALLA 2
 ========================================
 */
 
@@ -440,7 +440,7 @@ li {
 
 /*
 ========================================
-        PANTALLA 3 PROMPT
+        PANTALLA 3 
 ========================================
 */
 
@@ -631,7 +631,7 @@ li {
 
 /*
 ========================================
-        PANTALLA 4 MINIJUEGO
+        PANTALLA 4 
 ========================================
 */
 
@@ -939,11 +939,12 @@ footer {
 
 #message {
   font-weight: bold;
+  font-size: 48px;
+  align-items: start;
 }
 
 .mensajito {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: row;
   gap: 10px;
